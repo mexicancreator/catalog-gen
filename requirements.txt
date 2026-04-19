@@ -1,0 +1,4 @@
+# Python 3.10+
+# Instalar también dependencias de sistema para WeasyPrint (ver README y documentación oficial).
+pillow>=10.0.0
+weasyprint>=62.0

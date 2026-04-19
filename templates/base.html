@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{CATALOG_TITLE}}</title>
+  <style>
+    :root {
+      --primary: {{PRIMARY_COLOR}};
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --muted: #5c5c5c;
+      --card: #ffffff;
+      --radius: 12px;
+    }
+
+    /* Estilos: una clase en <body> — Minimal | Modern | Bold */
+    body.style-minimal {
+      --radius: 6px;
+      font-family: "Georgia", "Times New Roman", serif;
+    }
+    body.style-modern {
+      --radius: 16px;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    body.style-bold {
+      --radius: 4px;
+      font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    header.catalog-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem 2rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .logo-wrap {
+      flex: 0 0 auto;
+    }
+    .logo-wrap img {
+      display: block;
+      max-height: 72px;
+      width: auto;
+    }
+
+    .title-wrap {
+      flex: 1 1 220px;
+    }
+    .title-wrap h1 {
+      margin: 0;
+      font-size: 1.85rem;
+      color: var(--primary);
+    }
+    .title-wrap p.tagline {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Galería: grid adaptable; impresión/PDF friendly */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    article.product-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .product-card .thumb {
+      aspect-ratio: 4 / 3;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .product-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-card .meta {
+      padding: 0.85rem 1rem 1.1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .product-card h2 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .product-card p.desc {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    footer.catalog-footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; padding: 0; }
+      article.product-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<!--
+  Placeholders (sustituir antes de PDF):
+  {{CATALOG_TITLE}}     — Título del catálogo
+  {{PRIMARY_COLOR}}     — Color CSS, ej. #0f766e o crimson
+  {{BODY_STYLE_CLASS}}  — style-minimal | style-modern | style-bold
+  {{LOGO_SRC}}          — Ruta relativa al HTML, ej. assets/logo.png
+  {{PRODUCTS_HTML}}     — Bloque de <article class="product-card">...</article>
+-->
+<body class="{{BODY_STYLE_CLASS}}">
+  <div class="page">
+    <header class="catalog-header">
+      <div class="logo-wrap">
+        <img src="{{LOGO_SRC}}" alt="Logo" />
+      </div>
+      <div class="title-wrap">
+        <h1>{{CATALOG_TITLE}}</h1>
+        <p class="tagline">{{CATALOG_TAGLINE}}</p>
+      </div>
+    </header>
+
+    <main class="gallery" id="product-gallery">
+      {{PRODUCTS_HTML}}
+      <!-- Ejemplo de tarjeta (el agente puede replicar por cada ítem del manifest):
+      <article class="product-card">
+        <div class="thumb">
+          <img src="images/product_001.jpg" alt="" />
+        </div>
+        <div class="meta">
+          <h2>Nombre corto</h2>
+          <p class="desc">Descripción breve generada o tomada del nombre de archivo.</p>
+        </div>
+      </article>
+      -->
+    </main>
+
+    <footer class="catalog-footer">
+      {{FOOTER_NOTE}}
+    </footer>
+  </div>
+</body>
+</html>

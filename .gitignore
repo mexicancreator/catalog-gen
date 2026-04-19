@@ -1,0 +1,31 @@
+# Bytecode / caché Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Herramientas / OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Salidas de catálogo (no versionar builds locales)
+output/
+out/
+build/
+dist/
+
+# Editores (opcional; descomenta si no quieres compartir ajustes locales)
+# .vscode/
+# .idea/
+
+# Credenciales y material sensible (nunca subir)
+*.pem
+*.key
+secrets/
